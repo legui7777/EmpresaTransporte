@@ -5,9 +5,8 @@ using System.IO;
 namespace EmpresaTransporte
 {
 	class Program
-	{
 		
-		//static EmpresaTransporte et1 = new EmpresaTransporte("EmpresaTransporte", "28645984562");
+	{
 		public static void Menu(EmpresaTransporte et1){
 		
 			int opcion = 0; //opcion a elegir
@@ -54,7 +53,6 @@ namespace EmpresaTransporte
 							EliminarRegistro(et1);
 							break;
 						case 5:
-							// Submenu(); // Faltaba pasar la instancia de EmpresaTransporte al submenú
 							Submenu(et1);
 							break;
 						case 6:
@@ -113,8 +111,7 @@ namespace EmpresaTransporte
 				Console.WriteLine("Opción inválida.");
 			}
 		}
-
-		// public static void Submenu(){
+		
 		public static void Submenu(EmpresaTransporte et1){
 			int opcion = 0;
 			do{
@@ -267,21 +264,15 @@ namespace EmpresaTransporte
     		Console.Write("Kilometraje: ");
     		double kilometraje = Convert.ToDouble(Console.ReadLine());
 
-    		// Console.Write("Costo base: ");
-    		// double costo = Convert.ToDouble(Console.ReadLine());
-    		// El enunciado define costo base fijo: $5000 para Moto de reparto y $10000 para Furgón
-
     		Console.Write("Estado: ");
     		string estado = Console.ReadLine();
 
     		if (tipo == 1)
     		{
-        		// return new MotoReparto(codigo, matricula, capacidad, kilometraje, costo, estado);
         		return new MotoReparto(codigo, matricula, capacidad, kilometraje, estado);
     		}
     		else
     		{
-        		// return new Furgon(codigo, matricula, capacidad, kilometraje, costo, estado);
         		return new Furgon(codigo, matricula, capacidad, kilometraje, estado);
     		}
 		}
@@ -308,8 +299,7 @@ namespace EmpresaTransporte
 
     		Console.Write("Carga a transportar: ");
     		double carga = Convert.ToDouble(Console.ReadLine());
-
-    		// Seleccionar vehículo
+    		
     		Console.WriteLine("Vehículos disponibles:");
 
 			for (int i = 0; i < et1.Vehiculos.Count; i++)
@@ -318,8 +308,6 @@ namespace EmpresaTransporte
 			}
 
 			Console.Write("Seleccione un vehículo (número de opción o matrícula): ");
-			// int opcion = Convert.ToInt32(Console.ReadLine());
-			// Vehiculo vehiculo = et1.Vehiculos[opcion - 1];
 			string entradaVehiculo = Console.ReadLine().Trim();
 			Vehiculo vehiculo = null;
 			int opcionVehiculo;
@@ -343,8 +331,7 @@ namespace EmpresaTransporte
 			{
 				throw new Exception("El vehículo seleccionado no existe en la lista.");
 			}
-
-    		// Seleccionar choferes
+    
     		List<Chofer> listaChoferes = new List<Chofer>();
 
 			Console.Write("¿Cuántos choferes tendrá el viaje?: ");
@@ -362,9 +349,7 @@ namespace EmpresaTransporte
     			{
         			Console.WriteLine((j + 1) + ". " + et1.Choferes[j].Nombre + " (DNI: " + et1.Choferes[j].Dni + ")");
     			}
-
-	    		// int op = Convert.ToInt32(Console.ReadLine());
-	    		// listaChoferes.Add(et1.Choferes[op - 1]);
+	    	
 	    		string entradaChofer = Console.ReadLine().Trim();
 	    		Chofer choferSeleccionado = null;
 	    		int opChofer;
@@ -401,7 +386,7 @@ namespace EmpresaTransporte
 		public static void Main(string[] args)
 		{
 			EmpresaTransporte et1 = new EmpresaTransporte("EmpresaTransporte", "28645984562");
-			// Se recupera la información de flota y choferes al iniciar el sistema (según enunciado)
+			// Se recupera la información de flota y choferes al iniciar el sistema
 			et1.CargarDatos();
 			Menu(et1);
 			

@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 namespace EmpresaTransporte
 {
-	/// <summary>
-	/// Description of Class1.
-	/// </summary>
 	public class EmpresaTransporte
 	{
 		private string nombre;
@@ -52,7 +49,6 @@ namespace EmpresaTransporte
 			viajes.Add(viaje);
 			viaje.GenerarInformeCSV();
 		}
-		// public void EliminarChofer(int dni){} // Faltaba implementar lógica y EliminacionAsignadaException
 		public void EliminarChofer(int dni)
 		{
 			Chofer choferEncontrado = null;
@@ -80,8 +76,7 @@ namespace EmpresaTransporte
 			GuardarDatos();
 			Console.WriteLine("Chofer eliminado y cambios persistidos correctamente.");
 		}
-		
-		// public void EliminarVehiculo(string matricula){} // Faltaba implementar lógica y EliminacionAsignadaException
+				
 		public void EliminarVehiculo(string matricula)
 		{
 			Vehiculo vehiculoEncontrado = null;
@@ -113,7 +108,6 @@ namespace EmpresaTransporte
 			Console.WriteLine("Vehículo eliminado y cambios persistidos correctamente.");
 		}
 		
-		//public double CalcularMontoNetoTotalSueldos(){}
 		public double CalcularMontoNetoTotalSueldos()
 		{
 			double total = 0;
@@ -124,7 +118,7 @@ namespace EmpresaTransporte
 			return total;
 		}
 		
-		//public double CalcularCostosOperativosSemana(){}
+		
 		public double CalcularCostosOperativosSemana(DateTime inicioSemana)
 		{
 			double total = 0;
@@ -141,7 +135,7 @@ namespace EmpresaTransporte
 			return total;
 		}
 		
-		//public double CalcularTotalFacturablePeriodo(){}
+		
 		public double CalcularTotalFacturablePeriodo(DateTime inicio, DateTime fin)
 		{
 			double total = 0;
@@ -158,7 +152,7 @@ namespace EmpresaTransporte
 			return total;
 		}
 		
-		// public void ListarChoferes(){}
+		
 		public void ListarChoferes()
 		{
 			if (choferes.Count == 0)
@@ -182,7 +176,7 @@ namespace EmpresaTransporte
 			}
 		}
 		
-		// public void ListarVehiculos(){}
+		
 		public void ListarVehiculos()
 		{
 			if (vehiculos.Count == 0)
@@ -194,12 +188,12 @@ namespace EmpresaTransporte
 			Console.WriteLine("--- LISTADO DE VEHÍCULOS ---");
 			foreach (Vehiculo v in vehiculos)
 			{
-				// Polimorfismo: cada subclase (Furgon / MotoReparto) implementa el método abstracto MostrarDatos()
+				// Polimorfismo: cada subclase (Furgon / MotoReparto) maneja el método abstracto MostrarDatos() como necesite.
 				Console.WriteLine(v.MostrarDatos());
 			}
 		}
 		
-		// public void ListarViajesPorFecha(){}
+		
 		public void ListarViajesPorFecha(DateTime fecha)
 		{
 			bool encontrado = false;
@@ -220,8 +214,7 @@ namespace EmpresaTransporte
 			}
 		}
 		
-		// public void ListarViajesPorChofer(){} // Método duplicado respecto al UML (ListarViajesDeChofer)
-		// public void ListarViajesdeChofer(){}
+		
 		public void ListarViajesDeChofer(int dni)
 		{
 			Chofer choferEncontrado = null;
@@ -254,7 +247,7 @@ namespace EmpresaTransporte
 			}
 		}
 		
-		// public void ListarViajesDeVehiculo(){}
+		
 		public void ListarViajesDeVehiculo(string matricula)
 		{
 			bool encontrado = false;
@@ -275,7 +268,7 @@ namespace EmpresaTransporte
 			}
 		}
 		
-		// public void GuardarDatos(){}
+		
 		public void GuardarDatos()
 		{
 			try
@@ -303,7 +296,7 @@ namespace EmpresaTransporte
 			}
 		}
 		
-		// public void CargarDatos(){}
+		
 		public void CargarDatos()
 		{
 			try

@@ -6,7 +6,6 @@ using System.IO;
 
 public class Viaje
 {
-    //  ATRIBUTOS
     private string codigo;
     private string origen;
     private string destino;
@@ -17,7 +16,7 @@ public class Viaje
     private Vehiculo vehiculo;
     private List<Chofer> choferes;
 
-    // 2. CONSTRUCTOR 
+   
     public Viaje(string codigo, string origen, string destino, double distancia, DateTime fechaProgramada, DateTime fechaFin, double carga, Vehiculo vehiculo, List<Chofer> choferes)
     {
         if (carga > vehiculo.CapacidadCarga)
@@ -26,11 +25,10 @@ public class Viaje
         }
         foreach (var chofer in choferes)
         {
-            // if (chofer.disponible(fechaProgramada, fechaFin)) // BUG: Condición invertida (lanzaba excepción si SÍ estaba disponible)
+           
             if (!chofer.disponible(fechaProgramada, fechaFin))
        
             {
-                // throw new ChoferOcupadoException("El chofer {chofer.Nombre} ya se encuentra asignado a otro viaje en el mismo horario."); // BUG: No interpolaba el nombre del chofer
                 throw new ChoferOcupadoException("El chofer " + chofer.Nombre + " ya se encuentra asignado a otro viaje en el mismo horario.");
             }
         }
@@ -45,15 +43,12 @@ public class Viaje
         this.vehiculo = vehiculo;
         this.choferes = choferes;
 
-        // Registrar este viaje en la lista de cada chofer asignado
         foreach (var chofer in this.choferes)
         {
             chofer.listaViajes.Add(this);
         }
     }
 
-    // 3. MÉTODOS DE CÁLCULO Y GESTIÓN INTERNA
-    
     public string Codigo { get { return codigo; } }
     public string Origen { get { return origen; } }
     public string Destino { get { return destino; } }
@@ -69,7 +64,6 @@ public class Viaje
     {
         double costoVehiculo = vehiculo.CalcularCostoOperativo(distancia, carga);
         
-        // Suma de sueldos básicos de los choferes
         double sueldoChoferes = 0;
         foreach (var chofer in choferes)
         {
@@ -82,25 +76,12 @@ public class Viaje
     
     public void GenerarInformeCSV()
     {
-        // string path = "Informe_Viaje_{codigo}.csv"; // BUG: Tomaba "{codigo}" como texto literal en vez del valor de la variable
         string path = "Informe_Viaje_" + codigo + ".csv";
 
         using (StreamWriter sw = new StreamWriter(path))
         {
             sw.WriteLine("IdentificacionViaje;Vehiculo;Choferes;KilometrajeRecorrido;CostoOperativoVehiculo;CostoSueldosChoferes;CostoTotal");
 
-            
-            /*string nombresChoferes = string.Join(" / ", choferes.Select(c => c.Nombre));
-
-           
-            sw.WriteLine("{0};{1};{2};{3} km;{4};",	//*${6}${5};
-                codigo,
-                vehiculo.Matricula,
-                nombresChoferes,
-                distancia,
-                Vehiculo.CalcularCostoOperativo()
-                // CalcularCostoTotal()
-               );*/
 
             List<string> listaNombres = new List<string>();
             double sueldoChoferes = 0;
@@ -123,7 +104,6 @@ public class Viaje
                 costoTotal);
         }
 
-        // Console.WriteLine("¡Verificación exitosa! Se generó el archivo: {path}");}} // BUG: Tomaba "{path}" como texto literal
         Console.WriteLine("¡Verificación exitosa! Se generó el archivo: " + path);
     }
 }

@@ -22,8 +22,7 @@
     public string Estado { get { return estado; } set { estado = value; } }
 
     public abstract double CalcularCostoOperativo(double distancia, double cargaTransportada);
-
-    // Métodos abstractos para listar y persistir con polimorfismo (sin usar is, typeof ni GetType())
+    
     public abstract string ToLineaCSV();
     public abstract string MostrarDatos();
 }

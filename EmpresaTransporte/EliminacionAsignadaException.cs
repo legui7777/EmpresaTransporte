@@ -15,7 +15,6 @@ public class EliminacionAsignadaException : Exception, ISerializable
 	{
 	}
 
-	// This constructor is needed for serialization.
 	protected EliminacionAsignadaException(SerializationInfo info, StreamingContext context) : base(info, context)
 	{
 	}

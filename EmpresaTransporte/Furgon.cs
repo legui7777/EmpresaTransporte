@@ -3,7 +3,7 @@
     public Furgon(string codigoInterno, string matricula, int capacidadCarga, double kilometraje, double costoBase, string estado)
         : base(codigoInterno, matricula, capacidadCarga, kilometraje, costoBase, estado) { }
 
-    // Constructor con el costo base fijo de $10000 indicado en el enunciado
+    // Constructor base fijo de $10000
     public Furgon(string codigoInterno, string matricula, int capacidadCarga, double kilometraje, string estado)
         : base(codigoInterno, matricula, capacidadCarga, kilometraje, 10000, estado) { }
 

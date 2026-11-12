@@ -14,8 +14,7 @@ using System.Runtime.Serialization;
 		public CapacidadExcedidaException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
-
-		// This constructor is needed for serialization.
+		
 		protected CapacidadExcedidaException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}

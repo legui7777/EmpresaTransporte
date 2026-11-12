@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
-
 public class Chofer
 	{
 		private string nombre, direccion, estadoCivil;
 		private int dni;
 		private DateTime fechaDeNacimiento;
 		private double sueldoBasico;
-		// public List<Viaje> listaViajes; // BUG: No se inicializaba la lista (provocaba NullReferenceException)
 		public List<Viaje> listaViajes = new List<Viaje>();
 		public Chofer(string nombre, string direccion, string estadoCivil, int dni, DateTime fechaDeNacimiento, double sueldoBasico)
 		{
@@ -46,7 +43,6 @@ public class Chofer
 			return nombre + ";" + direccion + ";" + estadoCivil + ";" + dni + ";" + fechaDeNacimiento.ToString("yyyy-MM-dd") + ";" + sueldoBasico;
 		}
 		public double calcularSueldoNeto(){
-			// return sueldoBasico * 0.81; // BUG: 0.81 aplica 19% de deducción; el enunciado pide 21% (1 - 0.21 = 0.79)
 			return sueldoBasico * 0.79;
 		}
 		public int calcularEdad(){
@@ -59,7 +55,6 @@ public class Chofer
 		}
 		public bool disponible(DateTime inicio, DateTime fin){
 			foreach (Viaje viaje in listaViajes){
-        		// if (inicio < viaje.FechaFin && fin > viaje.FechaProgramada){ // Si cargan fechas sin hora (00:00) el mismo día, < y > no detectaban solapamiento
         		if (inicio <= viaje.FechaFin && fin >= viaje.FechaProgramada){
             		return false;
         		}
