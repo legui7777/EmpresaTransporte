@@ -59,7 +59,8 @@ public class Chofer
 		}
 		public bool disponible(DateTime inicio, DateTime fin){
 			foreach (Viaje viaje in listaViajes){
-        		if (inicio < viaje.FechaFin && fin > viaje.FechaProgramada){
+        		// if (inicio < viaje.FechaFin && fin > viaje.FechaProgramada){ // Si cargan fechas sin hora (00:00) el mismo día, < y > no detectaban solapamiento
+        		if (inicio <= viaje.FechaFin && fin >= viaje.FechaProgramada){
             		return false;
         		}
     		}

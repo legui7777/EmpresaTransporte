@@ -314,33 +314,86 @@ namespace EmpresaTransporte
 
 			for (int i = 0; i < et1.Vehiculos.Count; i++)
 			{
-    			Console.WriteLine((i + 1) + ". " + et1.Vehiculos[i].Matricula);
+    			Console.WriteLine((i + 1) + ". " + et1.Vehiculos[i].Matricula + " (" + et1.Vehiculos[i].MostrarDatos() + ")");
 			}
 
-			Console.Write("Seleccione un vehículo: ");
-			int opcion = Convert.ToInt32(Console.ReadLine());
-
-			Vehiculo vehiculo = et1.Vehiculos[opcion - 1];
+			Console.Write("Seleccione un vehículo (número de opción o matrícula): ");
+			// int opcion = Convert.ToInt32(Console.ReadLine());
+			// Vehiculo vehiculo = et1.Vehiculos[opcion - 1];
+			string entradaVehiculo = Console.ReadLine().Trim();
+			Vehiculo vehiculo = null;
+			int opcionVehiculo;
+			if (int.TryParse(entradaVehiculo, out opcionVehiculo) && opcionVehiculo >= 1 && opcionVehiculo <= et1.Vehiculos.Count)
+			{
+				vehiculo = et1.Vehiculos[opcionVehiculo - 1];
+			}
+			else
+			{
+				foreach (Vehiculo v in et1.Vehiculos)
+				{
+					if (string.Equals(v.Matricula, entradaVehiculo, StringComparison.OrdinalIgnoreCase) ||
+					    string.Equals(v.CodigoInterno, entradaVehiculo, StringComparison.OrdinalIgnoreCase))
+					{
+						vehiculo = v;
+						break;
+					}
+				}
+			}
+			if (vehiculo == null)
+			{
+				throw new Exception("El vehículo seleccionado no existe en la lista.");
+			}
 
     		// Seleccionar choferes
     		List<Chofer> listaChoferes = new List<Chofer>();
 
 			Console.Write("¿Cuántos choferes tendrá el viaje?: ");
 			int cantidad = Convert.ToInt32(Console.ReadLine());
+			if (cantidad <= 0 || cantidad > et1.Choferes.Count)
+			{
+				throw new Exception("La cantidad de choferes debe estar entre 1 y " + et1.Choferes.Count + ".");
+			}
 
 			for (int i = 0; i < cantidad; i++)
 			{
-    			Console.WriteLine("Seleccione el chofer " + (i + 1));
+    			Console.WriteLine("Seleccione el chofer " + (i + 1) + " (número de opción, DNI o nombre):");
 
     			for (int j = 0; j < et1.Choferes.Count; j++)
     			{
-        			Console.WriteLine((j + 1) + ". " + et1.Choferes[j].Nombre);
+        			Console.WriteLine((j + 1) + ". " + et1.Choferes[j].Nombre + " (DNI: " + et1.Choferes[j].Dni + ")");
     			}
 
-    		int op = Convert.ToInt32(Console.ReadLine());
+	    		// int op = Convert.ToInt32(Console.ReadLine());
+	    		// listaChoferes.Add(et1.Choferes[op - 1]);
+	    		string entradaChofer = Console.ReadLine().Trim();
+	    		Chofer choferSeleccionado = null;
+	    		int opChofer;
+	    		if (int.TryParse(entradaChofer, out opChofer) && opChofer >= 1 && opChofer <= et1.Choferes.Count)
+	    		{
+	    			choferSeleccionado = et1.Choferes[opChofer - 1];
+	    		}
+	    		else
+	    		{
+	    			foreach (Chofer c in et1.Choferes)
+	    			{
+	    				if (c.Dni.ToString() == entradaChofer ||
+	    				    string.Equals(c.Nombre, entradaChofer, StringComparison.OrdinalIgnoreCase))
+	    				{
+	    					choferSeleccionado = c;
+	    					break;
+	    				}
+	    			}
+	    		}
 
-    		listaChoferes.Add(et1.Choferes[op - 1]);
-}
+	    		if (choferSeleccionado == null)
+	    		{
+	    			throw new Exception("El chofer indicado no existe en la lista.");
+	    		}
+	    		if (!listaChoferes.Contains(choferSeleccionado))
+	    		{
+	    			listaChoferes.Add(choferSeleccionado);
+	    		}
+			}
 
     		return new Viaje(codigo, origen, destino, distancia, fechaProgramada, fechaFin, carga, vehiculo, listaChoferes);
 }
