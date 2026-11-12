@@ -23,11 +23,7 @@
 
     public abstract double CalcularCostoOperativo(double distancia, double cargaTransportada);
 
-    // Métodos polimórficos para listar y persistir sin usar is, typeof ni GetType()
+    // Métodos abstractos para listar y persistir con polimorfismo (sin usar is, typeof ni GetType())
     public abstract string ToLineaCSV();
-
-    public override string ToString()
-    {
-        return "Código: " + codigoInterno + " | Matrícula: " + matricula + " | Cap. Carga: " + capacidadCarga + " kg | Km: " + kilometraje + " | Costo Base: $" + costoBase + " | Estado: " + estado;
-    }
+    public abstract string MostrarDatos();
 }

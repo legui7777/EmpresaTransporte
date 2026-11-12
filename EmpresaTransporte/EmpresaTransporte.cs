@@ -194,8 +194,8 @@ namespace EmpresaTransporte
 			Console.WriteLine("--- LISTADO DE VEHÍCULOS ---");
 			foreach (Vehiculo v in vehiculos)
 			{
-				// Polimorfismo: cada subclase (Furgon / MotoReparto) redefine ToString()
-				Console.WriteLine(v.ToString());
+				// Polimorfismo: cada subclase (Furgon / MotoReparto) implementa el método abstracto MostrarDatos()
+				Console.WriteLine(v.MostrarDatos());
 			}
 		}
 		

@@ -18,8 +18,8 @@
         return "MotoReparto;" + codigoInterno + ";" + matricula + ";" + capacidadCarga + ";" + kilometraje + ";" + costoBase + ";" + estado;
     }
 
-    public override string ToString()
+    public override string MostrarDatos()
     {
-        return "[Moto de Reparto] " + base.ToString();
+        return "[Moto de Reparto] Código: " + codigoInterno + " | Matrícula: " + matricula + " | Cap. Carga: " + capacidadCarga + " kg | Km: " + kilometraje + " | Costo Base: $" + costoBase + " | Estado: " + estado;
     }
 }

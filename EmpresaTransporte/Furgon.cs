@@ -17,8 +17,8 @@
         return "Furgon;" + codigoInterno + ";" + matricula + ";" + capacidadCarga + ";" + kilometraje + ";" + costoBase + ";" + estado;
     }
 
-    public override string ToString()
+    public override string MostrarDatos()
     {
-        return "[Furgón] " + base.ToString();
+        return "[Furgón] Código: " + codigoInterno + " | Matrícula: " + matricula + " | Cap. Carga: " + capacidadCarga + " kg | Km: " + kilometraje + " | Costo Base: $" + costoBase + " | Estado: " + estado;
     }
 }
